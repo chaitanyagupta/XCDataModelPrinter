@@ -10,6 +10,8 @@
 		54F505ED1550FC8F00D4A631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F505EC1550FC8F00D4A631 /* Foundation.framework */; };
 		54F505F01550FC8F00D4A631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F505EF1550FC8F00D4A631 /* main.m */; };
 		54F505F41550FC8F00D4A631 /* MOMPrinter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 54F505F31550FC8F00D4A631 /* MOMPrinter.1 */; };
+		54F505FB1550FCA300D4A631 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F505FA1550FCA300D4A631 /* CoreData.framework */; };
+		54F5060F1551234400D4A631 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F5060E1551234400D4A631 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +31,11 @@
 		54F505E81550FC8F00D4A631 /* MOMPrinter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MOMPrinter; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F505EC1550FC8F00D4A631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54F505EF1550FC8F00D4A631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		54F505F21550FC8F00D4A631 /* MOMPrinter-Prefix.pch */ = {isa = PBXFileReference; path = "MOMPrinter-Prefix.pch"; sourceTree = "<group>"; };
+		54F505F21550FC8F00D4A631 /* MOMPrinter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOMPrinter-Prefix.pch"; sourceTree = "<group>"; };
 		54F505F31550FC8F00D4A631 /* MOMPrinter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MOMPrinter.1; sourceTree = "<group>"; };
+		54F505FA1550FCA300D4A631 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		54F5060D1551234400D4A631 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		54F5060E1551234400D4A631 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F505FB1550FCA300D4A631 /* CoreData.framework in Frameworks */,
 				54F505ED1550FC8F00D4A631 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +59,7 @@
 				54F505E91550FC8F00D4A631 /* Products */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		54F505E91550FC8F00D4A631 /* Products */ = {
 			isa = PBXGroup;
@@ -65,6 +72,7 @@
 		54F505EB1550FC8F00D4A631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54F505FA1550FCA300D4A631 /* CoreData.framework */,
 				54F505EC1550FC8F00D4A631 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -73,6 +81,7 @@
 		54F505EE1550FC8F00D4A631 /* MOMPrinter */ = {
 			isa = PBXGroup;
 			children = (
+				54F5060C1551234400D4A631 /* NSData_Base64 */,
 				54F505EF1550FC8F00D4A631 /* main.m */,
 				54F505F31550FC8F00D4A631 /* MOMPrinter.1 */,
 				54F505F11550FC8F00D4A631 /* Supporting Files */,
@@ -86,6 +95,15 @@
 				54F505F21550FC8F00D4A631 /* MOMPrinter-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		54F5060C1551234400D4A631 /* NSData_Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				54F5060D1551234400D4A631 /* NSData+Base64.h */,
+				54F5060E1551234400D4A631 /* NSData+Base64.m */,
+			);
+			path = NSData_Base64;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F505F01550FC8F00D4A631 /* main.m in Sources */,
+				54F5060F1551234400D4A631 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +246,7 @@
 				54F505F91550FC8F00D4A631 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
