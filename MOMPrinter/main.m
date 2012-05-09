@@ -141,6 +141,25 @@ void printMOM(NSString *path) {
     }
     printf("\n");
   }
+  
+  // Print Configurations
+  NSArray *configurations = [model configurations];
+  for (NSString *configuration in configurations) {
+    NSPrintf(@"Configuration: %@\n", configuration);
+    for (NSEntityDescription *entity in [model entitiesForConfiguration:configuration]) {
+      NSPrintf(@"  Entity: %@\n", [entity name]);
+    }
+    printf("\n");
+  }
+  
+  // Print Fetch Requests
+  NSDictionary *fetchRequestsByName = [model fetchRequestTemplatesByName];
+  for (NSString *name in fetchRequestsByName) {
+    NSFetchRequest *request = [fetchRequestsByName objectForKey:name];
+    NSPrintf(@"Fetch Request: %@\n", name);
+    NSPrintf(@"  %@\n", request);
+    printf("\n");
+  }
 }
 
 
