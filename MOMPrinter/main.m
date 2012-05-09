@@ -83,6 +83,8 @@ NSString *deleteRuleString(NSDeleteRule rule) {
 void printMOM(NSString *path) {
   NSURL *url = [NSURL fileURLWithPath:path];
   NSManagedObjectModel *model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
+  
+  // Print entities
   NSMutableArray *entities = [NSMutableArray arrayWithArray:[model entities]];
   [entities sortUsingComparator:^(id obj1, id obj2) {
     return [[obj1 name] compare:[obj2 name]];
@@ -93,6 +95,7 @@ void printMOM(NSString *path) {
     if (superentity) {
       [entityStr appendFormat:@" : %@", [superentity name]];
     }
+    [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
     NSPrintf(@"%@ %*c %@\n", 
              entityStr,
              (WRelTotal - [entityStr length] - 1), ' ',
