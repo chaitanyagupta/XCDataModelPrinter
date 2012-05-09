@@ -20,17 +20,10 @@ void NSPrintf(NSString *fmt, ...) {
 }
 
 NSString *commonFlagsStringForProperty(NSPropertyDescription *property) {
-  NSMutableString *str = [NSMutableString string];
-  if ([property isOptional]) {
-    [str appendString:@"O"];
-  }
-  if ([property isTransient]) {
-    [str appendString:@"T"];
-  }
-  if ([property isIndexed]) {
-    [str appendString:@"I"];
-  }
-  return str;
+  char ochar = [property isOptional] ? 'O' : ' ';
+  char tchar = [property isTransient] ? 'T' : ' ';
+  char ichar = [property isIndexed] ? 'I' : ' ';
+  return [NSString stringWithFormat:@"%c%c%c", ochar, tchar, ichar];
 }
 
 NSNumber *orderNumberForClassOfProperty(NSPropertyDescription *property) {
@@ -55,48 +48,88 @@ NSString *deleteRuleString(NSDeleteRule rule) {
   }
 }
 
+
+// Field widths
+
+#define WHeader 6
+#define WEntityName 15
+#define WPropName 25
+#define WFlags 3
+
+#define WAttrClassName 10
+
+#define WRelToMany 6
+#define WRelDeleteRule 7
+
+// Calculating lengths
+
+#define WRelTotal (WHeader + 1 \
+  + WPropName + 1 \
+  + WEntityName + 1 \
+  + WPropName + 1 \
+  + WRelToMany + 1 \
+  + WRelDeleteRule + 1 \
+  + WFlags)
+
+#define WAttrTotal (WHeader + 1 \
+  + WPropName + 1 \
+  + WAttrClassName + 1 \
+  + WFlags)
+
+#define WFPrTotal (WHeader + 1 \
+  + WPropName + 1 \
+  + WFlags)
+
 void printMOM(NSString *path) {
   NSURL *url = [NSURL fileURLWithPath:path];
   NSManagedObjectModel *model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
-  NSArray *entities = [model entities];
+  NSMutableArray *entities = [NSMutableArray arrayWithArray:[model entities]];
+  [entities sortUsingComparator:^(id obj1, id obj2) {
+    return [[obj1 name] compare:[obj2 name]];
+  }];
   for (NSEntityDescription *entity in entities) {
-    NSPrintf(@"Entity: %@", [entity name]);
+    NSPrintf(@"Entity: %s", [[entity name] UTF8String]);
     NSEntityDescription *superentity = [entity superentity];
     if (superentity) {
-      NSPrintf(@" : %@", [superentity name]);
+      NSPrintf(@" : %s", [[superentity name] UTF8String]);
     }
     printf("\n");
     NSMutableArray *properties = [NSMutableArray arrayWithArray:[entity properties]];
     [properties sortUsingComparator:^(id obj1, id obj2) {
       NSNumber *n1 = orderNumberForClassOfProperty(obj1);
       NSNumber *n2 = orderNumberForClassOfProperty(obj2);
-      return [n1 compare:n2];
+      NSComparisonResult result =  [n1 compare:n2];
+      if (result == NSOrderedSame) {
+        return [[obj1 name] compare:[obj2 name]];
+      } else {
+        return result;
+      }
     }];
     for (id property in properties) {
       const char *name = [[property name] UTF8String];
       const char *commonFlags = [commonFlagsStringForProperty(property) UTF8String];
       NSString *hash = [[property versionHash] base64EncodedString];
       if ([property isKindOfClass:[NSAttributeDescription class]]) {
-        NSPrintf(@"  Att: %-25s %-10s %45c %-3s %@\n", 
-                 name,
-                 [[property attributeValueClassName] UTF8String],
-                 ' ',
-                 commonFlags,
+        NSPrintf(@"  Att: %-*s %-*s %*c %-*s %@\n", 
+                 WPropName, name,
+                 WAttrClassName, [[property attributeValueClassName] UTF8String],
+                 (WRelTotal - WAttrTotal - 1), ' ',
+                 WFlags, commonFlags,
                  hash);
       } else if ([property isKindOfClass:[NSRelationshipDescription class]]) {
-        NSPrintf(@"  Rel: %-25s %-15s %-25s %-6s %-7s %-3s %@\n",
-                 name,
-                 [[[property destinationEntity] name] UTF8String],
-                 [[[property inverseRelationship] name] UTF8String],
-                 [property isToMany] ? "ToMany" : "",
-                 [deleteRuleString([property deleteRule]) UTF8String],
-                 commonFlags,
+        NSPrintf(@"  Rel: %-*s %-*s %-*s %-*s %-*s %-*s %@\n",
+                 WPropName, name,
+                 WEntityName, [[[property destinationEntity] name] UTF8String],
+                 WPropName, [[[property inverseRelationship] name] UTF8String],
+                 WRelToMany, [property isToMany] ? "ToMany" : "",
+                 WRelDeleteRule, [deleteRuleString([property deleteRule]) UTF8String],
+                 WFlags, commonFlags,
                  hash);
       } else if ([property isKindOfClass:[NSFetchedPropertyDescription class]]) {
-        NSPrintf(@"  FPr: %-25s %56c %-3s %@\n",
-                 name,
-                 ' ',
-                 commonFlags,
+        NSPrintf(@"  FPr: %-*s %*c %-*s %@\n",
+                 WPropName, name,
+                 (WRelTotal - WFPrTotal - 1), ' ',
+                 WFlags, commonFlags,
                  hash);
       }
     }
