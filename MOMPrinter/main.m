@@ -88,12 +88,15 @@ void printMOM(NSString *path) {
     return [[obj1 name] compare:[obj2 name]];
   }];
   for (NSEntityDescription *entity in entities) {
-    NSPrintf(@"Entity: %s", [[entity name] UTF8String]);
+    NSMutableString *entityStr = [NSMutableString stringWithFormat:@"Entity: %@", [entity name]];
     NSEntityDescription *superentity = [entity superentity];
     if (superentity) {
-      NSPrintf(@" : %s", [[superentity name] UTF8String]);
+      [entityStr appendFormat:@" : %@", [superentity name]];
     }
-    printf("\n");
+    NSPrintf(@"%@ %*c %@\n", 
+             entityStr,
+             (WRelTotal - [entityStr length] - 1), ' ',
+             [[entity versionHash] base64EncodedString]);
     NSMutableArray *properties = [NSMutableArray arrayWithArray:[entity properties]];
     [properties sortUsingComparator:^(id obj1, id obj2) {
       NSNumber *n1 = orderNumberForClassOfProperty(obj1);
