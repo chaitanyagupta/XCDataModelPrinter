@@ -48,6 +48,24 @@ NSString *deleteRuleString(NSDeleteRule rule) {
   }
 }
 
+NSString *attributeTypeString(NSAttributeType type) {
+  switch (type) {
+    case NSUndefinedAttributeType: return @"Undefined";
+    case NSInteger16AttributeType: return @"Integer16";
+    case NSInteger32AttributeType: return @"Integer32";
+    case NSInteger64AttributeType: return @"Integer64";
+    case NSDecimalAttributeType: return @"Decimal";
+    case NSDoubleAttributeType: return @"Double";
+    case NSFloatAttributeType: return @"Float";
+    case NSStringAttributeType: return @"String";
+    case NSBooleanAttributeType: return @"Boolean";
+    case NSDateAttributeType: return @"Date";
+    case NSBinaryDataAttributeType: return @"BinaryData";
+    case NSTransformableAttributeType: return @"Transformable";
+    case NSObjectIDAttributeType: return @"ObjectID";
+    default: return nil;
+  }
+}
 
 // Field widths
 
@@ -56,7 +74,7 @@ NSString *deleteRuleString(NSDeleteRule rule) {
 #define WPropName 25
 #define WFlags 3
 
-#define WAttrClassName 10
+#define WAttrTypeName 13
 
 #define WRelToMany 6
 #define WRelDeleteRule 7
@@ -73,7 +91,7 @@ NSString *deleteRuleString(NSDeleteRule rule) {
 
 #define WAttrTotal (WHeader + 1 \
   + WPropName + 1 \
-  + WAttrClassName + 1 \
+  + WAttrTypeName + 1 \
   + WFlags)
 
 #define WFPrTotal (WHeader + 1 \
@@ -118,7 +136,7 @@ void printMOM(NSString *path) {
       if ([property isKindOfClass:[NSAttributeDescription class]]) {
         NSPrintf(@"  Att: %-*s %-*s %*c %-*s %@\n", 
                  WPropName, name,
-                 WAttrClassName, [[property attributeValueClassName] UTF8String],
+                 WAttrTypeName, [attributeTypeString([property attributeType]) UTF8String],
                  (WRelTotal - WAttrTotal - 1), ' ',
                  WFlags, commonFlags,
                  hash);
