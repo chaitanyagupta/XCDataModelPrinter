@@ -34,42 +34,44 @@ description of the data model on standard output.
 Installation
 ------------
 
-1. Copy `print_xcdatamodel` to your $PATH
+1. Copy `print_xcdatamodel` to your `$PATH`
 
-2. Build MOMPrinter and copy the binary to your path
+2. Build `MOMPrinter` and copy the binary to your path
 
-    * Open the MOMPrinter project in Xcode and build with release
-      configuration
-    * Right click on Products > MOMPrinter in the project navigator,
-      then click 'Show in Finder' to locate the binary
-    * Copy the binary to your $PATH
+  * Open the `MOMPrinter` project in Xcode and build with release
+    configuration
+  * Right click on Products > MOMPrinter in the project navigator,
+    then click 'Show in Finder' to locate the binary
+  * Copy the binary to your `$PATH`
 
     Alternatively, you can build the project on the command line using
     xcodebuild.
 
-3. Ensure that `momc` is available in your $PATH. For Xcode 4.3.2, the
+Adding the git-diff driver
+--------------------------
+
+1. Ensure that `momc` is available in your $PATH. For Xcode 4.3.2, the
 `momc` binary can be found at
-/Applications/Xcode.app/Contents/Developer/usr/bin/momc
+`/Applications/Xcode.app/Contents/Developer/usr/bin/momc`
 
-4. Set up `git diff` to use `print_xcdatamodel` for xcdatamodel files
+2. Set up `git diff` to use `print_xcdatamodel` for xcdatamodel files
 
-    * Add the following line to your projects `.gitattributes` file
-      (if you want this to apply globally, you can use
-      `~/.gitattributes`)
+  * Add the following line to your projects `.gitattributes` file (if
+    you want this to apply globally, you can use `~/.gitattributes`)
 
-            elements diff=xcdatamodel
+        elements diff=xcdatamodel
 
-      This tells to use `xcdatamodel` as the diff driver for
-      .xcdatamodel/elements files (which contain your model's entire
-      definition). What exactly is this `xcdatamodel` driver? That is
-      defined in the next section.
+    This tells to use `xcdatamodel` as the diff driver for
+    .xcdatamodel/elements files (which contain your model's entire
+    definition). What exactly is this `xcdatamodel` driver? That is
+    defined in the next section.
 
-    * We can set up the `xcdatamodel` driver using `git config`. Use
-      these commands to set up the driver (use the `--global` option
-      if you want to set up the driver for all your projects)
+  * We can set up the `xcdatamodel` driver using `git config`. Use
+    these commands to set up the driver (use the `--global` option if
+    you want to set up the driver for all your projects)
 
-            git config diff.xcdatamodel.xcfuncname ^Entity
-            git config diff.xcdatamodel.textconv print_xcdatamodel
+        git config diff.xcdatamodel.xcfuncname ^Entity
+        git config diff.xcdatamodel.textconv print_xcdatamodel
 
 Now, whenever you use any git command which shows a diff output
 (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a change
