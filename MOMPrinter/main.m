@@ -102,11 +102,12 @@ void printMOM(NSString *path) {
   NSURL *url = [NSURL fileURLWithPath:path];
   NSManagedObjectModel *model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
   
+  NSComparator nameCmptr = ^(id obj1, id obj2) {
+    return [[obj1 name] caseInsensitiveCompare:[obj2 name]];
+  };
+  
   // Print entities
-  NSMutableArray *entities = [NSMutableArray arrayWithArray:[model entities]];
-  [entities sortUsingComparator:^(id obj1, id obj2) {
-    return [[obj1 name] compare:[obj2 name]];
-  }];
+  NSArray *entities = [[model entities] sortedArrayUsingComparator:nameCmptr];
   for (NSEntityDescription *entity in entities) {
     NSMutableString *entityStr = [NSMutableString stringWithFormat:@"Entity: %@", [entity name]];
     NSEntityDescription *superentity = [entity superentity];
@@ -161,7 +162,7 @@ void printMOM(NSString *path) {
   }
   
   // Print Configurations
-  NSArray *configurations = [model configurations];
+  NSArray *configurations = [[model configurations] sortedArrayUsingComparator:nameCmptr];
   for (NSString *configuration in configurations) {
     NSPrintf(@"Configuration: %@\n", configuration);
     for (NSEntityDescription *entity in [model entitiesForConfiguration:configuration]) {
@@ -172,7 +173,8 @@ void printMOM(NSString *path) {
   
   // Print Fetch Requests
   NSDictionary *fetchRequestsByName = [model fetchRequestTemplatesByName];
-  for (NSString *name in fetchRequestsByName) {
+  NSArray *names = [[fetchRequestsByName allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+  for (NSString *name in names) {
     NSFetchRequest *request = [fetchRequestsByName objectForKey:name];
     NSPrintf(@"Fetch Request: %@\n", name);
     NSPrintf(@"  %@\n", request);
