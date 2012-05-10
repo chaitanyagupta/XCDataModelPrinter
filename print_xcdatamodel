@@ -6,7 +6,7 @@ set -o errexit
 MOMC=${MOMC-"momc"}
 MOMPrinter=${MOMPrinter-"MOMPrinter"}
 TMP_DIR=$(mktemp -d /tmp/datamodelconvXXXXXX)
-TMP_MOMD="$TMP_DIR/out.mom"
+TMP_MOM="$TMP_DIR/out.mom"
 INPUT_MODEL_DIR=
 
 set +o nounset
@@ -22,9 +22,9 @@ else # elements file is given, copy to a temp directory
 fi
 set -o nounset
 
-"$MOMC" "$INPUT_MODEL_DIR" "$TMP_MOMD"
-"$MOMPrinter" "$TMP_MOMD"
-rm "$TMP_MOMD"
+"$MOMC" "$INPUT_MODEL_DIR" "$TMP_MOM"
+"$MOMPrinter" "$TMP_MOM"
+rm "$TMP_MOM"
 
 exit 0
 
