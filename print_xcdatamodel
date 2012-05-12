@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 
 MOMC=${MOMC-"momc"}
-MOMPrinter=${MOMPrinter-"MOMPrinter"}
+PRINTER=${XC_DATAMODEL_PRINTER-"XCDataModelPrinter"}
 TMP_DIR=$(mktemp -d /tmp/datamodelconvXXXXXX)
 TMP_MOM="$TMP_DIR/out.mom"
 INPUT_MODEL_DIR=
@@ -23,7 +23,7 @@ fi
 set -o nounset
 
 "$MOMC" "$INPUT_MODEL_DIR" "$TMP_MOM"
-"$MOMPrinter" "$TMP_MOM"
+"$PRINTER" "$TMP_MOM"
 rm "$TMP_MOM"
 
 exit 0

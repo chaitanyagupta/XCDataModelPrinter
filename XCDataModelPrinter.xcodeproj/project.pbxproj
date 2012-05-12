@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54CAE68E155E54D500C956CD /* MOMPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = 54CAE68D155E54D400C956CD /* MOMPrinter.m */; };
 		54F505ED1550FC8F00D4A631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F505EC1550FC8F00D4A631 /* Foundation.framework */; };
 		54F505F01550FC8F00D4A631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54F505EF1550FC8F00D4A631 /* main.m */; };
 		54F505FB1550FCA300D4A631 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F505FA1550FCA300D4A631 /* CoreData.framework */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		54CAE68C155E54D400C956CD /* MOMPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOMPrinter.h; sourceTree = "<group>"; };
+		54CAE68D155E54D400C956CD /* MOMPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOMPrinter.m; sourceTree = "<group>"; };
 		54F505E81550FC8F00D4A631 /* XCDataModelPrinter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XCDataModelPrinter; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F505EC1550FC8F00D4A631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54F505EF1550FC8F00D4A631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 				54F5060C1551234400D4A631 /* NSData_Base64 */,
 				54F505EF1550FC8F00D4A631 /* main.m */,
 				54F505F11550FC8F00D4A631 /* Supporting Files */,
+				54CAE68C155E54D400C956CD /* MOMPrinter.h */,
+				54CAE68D155E54D400C956CD /* MOMPrinter.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			files = (
 				54F505F01550FC8F00D4A631 /* main.m in Sources */,
 				54F5060F1551234400D4A631 /* NSData+Base64.m in Sources */,
+				54CAE68E155E54D500C956CD /* MOMPrinter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
