@@ -28,10 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		54F505E81550FC8F00D4A631 /* MOMPrinter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MOMPrinter; sourceTree = BUILT_PRODUCTS_DIR; };
+		54F505E81550FC8F00D4A631 /* XCDataModelPrinter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XCDataModelPrinter; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F505EC1550FC8F00D4A631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54F505EF1550FC8F00D4A631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		54F505F21550FC8F00D4A631 /* MOMPrinter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOMPrinter-Prefix.pch"; sourceTree = "<group>"; };
+		54F505F21550FC8F00D4A631 /* XCDataModelPrinter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XCDataModelPrinter-Prefix.pch"; sourceTree = "<group>"; };
 		54F505F31550FC8F00D4A631 /* MOMPrinter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MOMPrinter.1; sourceTree = "<group>"; };
 		54F505FA1550FCA300D4A631 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		54F5060D1551234400D4A631 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		54F505DD1550FC8F00D4A631 = {
 			isa = PBXGroup;
 			children = (
-				54F505EE1550FC8F00D4A631 /* MOMPrinter */,
+				54F505EE1550FC8F00D4A631 /* src */,
 				54F505EB1550FC8F00D4A631 /* Frameworks */,
 				54F505E91550FC8F00D4A631 /* Products */,
 			);
@@ -64,7 +64,7 @@
 		54F505E91550FC8F00D4A631 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54F505E81550FC8F00D4A631 /* MOMPrinter */,
+				54F505E81550FC8F00D4A631 /* XCDataModelPrinter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,7 +78,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		54F505EE1550FC8F00D4A631 /* MOMPrinter */ = {
+		54F505EE1550FC8F00D4A631 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				54F5060C1551234400D4A631 /* NSData_Base64 */,
@@ -86,13 +86,13 @@
 				54F505F31550FC8F00D4A631 /* MOMPrinter.1 */,
 				54F505F11550FC8F00D4A631 /* Supporting Files */,
 			);
-			path = MOMPrinter;
+			path = src;
 			sourceTree = "<group>";
 		};
 		54F505F11550FC8F00D4A631 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				54F505F21550FC8F00D4A631 /* MOMPrinter-Prefix.pch */,
+				54F505F21550FC8F00D4A631 /* XCDataModelPrinter-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		54F505E71550FC8F00D4A631 /* MOMPrinter */ = {
+		54F505E71550FC8F00D4A631 /* XCDataModelPrinter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 54F505F71550FC8F00D4A631 /* Build configuration list for PBXNativeTarget "MOMPrinter" */;
+			buildConfigurationList = 54F505F71550FC8F00D4A631 /* Build configuration list for PBXNativeTarget "XCDataModelPrinter" */;
 			buildPhases = (
 				54F505E41550FC8F00D4A631 /* Sources */,
 				54F505E51550FC8F00D4A631 /* Frameworks */,
@@ -121,9 +121,9 @@
 			);
 			dependencies = (
 			);
-			name = MOMPrinter;
+			name = XCDataModelPrinter;
 			productName = MOMPrinter;
-			productReference = 54F505E81550FC8F00D4A631 /* MOMPrinter */;
+			productReference = 54F505E81550FC8F00D4A631 /* XCDataModelPrinter */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -134,7 +134,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = 54F505E21550FC8F00D4A631 /* Build configuration list for PBXProject "MOMPrinter" */;
+			buildConfigurationList = 54F505E21550FC8F00D4A631 /* Build configuration list for PBXProject "XCDataModelPrinter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -146,7 +146,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				54F505E71550FC8F00D4A631 /* MOMPrinter */,
+				54F505E71550FC8F00D4A631 /* XCDataModelPrinter */,
 			);
 		};
 /* End PBXProject section */
@@ -213,8 +213,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MOMPrinter/MOMPrinter-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "src/XCDataModelPrinter-Prefix.pch";
+				PRODUCT_NAME = XCDataModelPrinter;
 			};
 			name = Debug;
 		};
@@ -222,15 +222,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MOMPrinter/MOMPrinter-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "src/XCDataModelPrinter-Prefix.pch";
+				PRODUCT_NAME = XCDataModelPrinter;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		54F505E21550FC8F00D4A631 /* Build configuration list for PBXProject "MOMPrinter" */ = {
+		54F505E21550FC8F00D4A631 /* Build configuration list for PBXProject "XCDataModelPrinter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54F505F51550FC8F00D4A631 /* Debug */,
@@ -239,7 +239,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		54F505F71550FC8F00D4A631 /* Build configuration list for PBXNativeTarget "MOMPrinter" */ = {
+		54F505F71550FC8F00D4A631 /* Build configuration list for PBXNativeTarget "XCDataModelPrinter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				54F505F81550FC8F00D4A631 /* Debug */,

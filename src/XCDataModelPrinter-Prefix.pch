@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'XCDataModelPrinter' target in the 'XCDataModelPrinter' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+#endif
