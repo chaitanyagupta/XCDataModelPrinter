@@ -1,5 +1,5 @@
 //
-//  utils.h
+//  MOMCompiler.h
 //  XCDataModelPrinter
 //
 //  Created by Chaitanya Gupta on 24/05/12.
@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@interface MOMCompiler : NSObject
 
-void NSPrintf(NSString *fmt, ...);
-void NSFPrintf(FILE *stream, NSString *fmt, ...);
-void NSPrintError(NSString *fmt, ...);
+- (NSString *)compilePath:(NSString *)path;
+
+@end
