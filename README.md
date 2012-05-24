@@ -21,47 +21,54 @@ Data managed object models. An example `git diff` output follows:
        Att: name                      String                                                       jLmWXAAxrGiROYTzEQlBrZZTlb6f2bF9575UvHrUaJA=
        Rel: recipe                    Recipe          ingredients                      Nullify O I GvmjTsOh76OGkr0Lmnxdh8u6FO4E+iuEYa0mRZPuKJQ=
 
-The project contains a script, `print_xcdatamodel`, which prints a
-textual representation of a .xcdatamodel file. This script as the
-textconv program for a diff driver in git (see Installation below).
+The project source compiles to a binary, `XCDataModelPrinter`, which
+prints a textual representation of a .xcdatamodel file. This binary
+acts as the textconv program for a diff driver in git (see
+Installation below).
 
-`print_xcdatamodel` works by compiling the xcdatamodel file to a mom
-file using the `momc` compiler. The compiled mom file is then read by
-another program, `MOMPrinter`, which also ships with this
-project. `MOMPrinter` takes a .mom file as input and prints a detailed
-description of the data model on standard output.
+`XCDataModelPrinter` works by compiling the .xcdatamodel file
+(actually, its a directory) to a .mom file using the `momc`
+compiler. The program should usually be able to find `momc`, but if it
+can't, you can help it by setting the environment variable
+`MOMC_PATH`. Once it has a compiled .mom file, it uses the
+`NSManagedObjectModel` interface to print a textual representation on
+standard output.
 
 Installation
 ------------
 
-1. Copy `print_xcdatamodel` to your `$PATH`
+1. Build `XCDataModelPrinter` and copy the binary to your path
 
-2. Build `MOMPrinter` and copy the binary to your path
-
-  * Open the `MOMPrinter` project in Xcode and build with release
+  * Open the `XCDataModelPrinter` project in Xcode and build with release
     configuration
-  * Right click on Products > MOMPrinter in the project navigator,
+  * Right click on Products > XCDataModelPrinter in the project navigator,
     then click 'Show in Finder' to locate the binary
   * Copy the binary to your `$PATH`
 
     Alternatively, you can build the project on the command line using
     xcodebuild.
 
+2. Test with an existing .xcdatamodel file.
+
+    XCDataModelPrinter /path/to/your/project.xcdatamodeld/project 1.xcdatamodel
+
+   If you see a textual representation of the data model printed on
+   stdout, skip to the next section. If you see an error that says
+   "Couldn't find momc", you need to help `XCDataModelPrinter` find
+   the the `momc` binary. You can do this by setting the environment
+   variable `MOMC_PATH` to the path of the `momc` binary.
+
 Adding the git-diff driver
 --------------------------
 
-1. Ensure that `momc` is available in your $PATH. For Xcode 4.3.2, the
-`momc` binary can be found at
-`/Applications/Xcode.app/Contents/Developer/usr/bin/momc`
+1. Set up `git diff` to use `XCDataModelPrinter` for xcdatamodel files
 
-2. Set up `git diff` to use `print_xcdatamodel` for xcdatamodel files
-
-  * Add the following line to your projects `.gitattributes` file (if
+  * Add the following line to your project's `.gitattributes` file (if
     you want this to apply globally, you can use `~/.gitattributes`)
 
         elements diff=xcdatamodel
 
-    This tells to use `xcdatamodel` as the diff driver for
+    This tells git to use `xcdatamodel` as the diff driver for
     .xcdatamodel/elements files (which contain your model's entire
     definition). What exactly is this `xcdatamodel` driver? That is
     defined in the next section.
@@ -70,8 +77,8 @@ Adding the git-diff driver
     these commands to set up the driver (use the `--global` option if
     you want to set up the driver for all your projects)
 
-        git config diff.xcdatamodel.xcfuncname ^Entity
-        git config diff.xcdatamodel.textconv print_xcdatamodel
+        git config diff.xcdatamodel.xfuncname ^Entity.*$
+        git config diff.xcdatamodel.textconv XCDataModelPrinter
 
 Now, whenever you use any git command which shows a diff output
 (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a change
