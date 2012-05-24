@@ -12,7 +12,7 @@
 
 #define MOMC_PATH_ENV_VAR @"MOMC_PATH"
 #define XCODE_4_3_2_MOMC_PATH @"/Applications/Xcode.app/Contents/Developer/usr/bin/momc"
-#define OLD_MOMC_PATH @"/usr/bin/momc"
+#define OLD_MOMC_PATH @"/Developer/usr/bin/momc"
 
 
 NSString *tempDirectoryPath() {
