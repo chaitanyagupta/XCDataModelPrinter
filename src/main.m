@@ -13,7 +13,7 @@
 
 int main(int argc, const char * argv[])
 {
-  
+
   @autoreleasepool {
     if (argc == 2) {
       NSString *path = [NSString stringWithCString:argv[1] encoding:NSUTF8StringEncoding];

@@ -104,11 +104,11 @@ NSString *attributeTypeString(NSAttributeType type) {
     NSPrintError(@"Could not load model");
     return NO;
   }
-  
+
   NSComparator nameCmptr = ^(id obj1, id obj2) {
     return [[obj1 name] caseInsensitiveCompare:[obj2 name]];
   };
-  
+
   // Print entities
   NSArray *entities = [[model entities] sortedArrayUsingComparator:nameCmptr];
   for (NSEntityDescription *entity in entities) {
@@ -118,7 +118,7 @@ NSString *attributeTypeString(NSAttributeType type) {
       [entityStr appendFormat:@" : %@", [superentity name]];
     }
     [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
-    NSPrintf(@"%@ %*c %@\n", 
+    NSPrintf(@"%@ %*c %@\n",
              entityStr,
              (WRelTotal - [entityStr length] - 1), ' ',
              [[entity versionHash] base64EncodedString]);
@@ -138,7 +138,7 @@ NSString *attributeTypeString(NSAttributeType type) {
       const char *commonFlags = [commonFlagsStringForProperty(property) UTF8String];
       NSString *hash = [[property versionHash] base64EncodedString];
       if ([property isKindOfClass:[NSAttributeDescription class]]) {
-        NSPrintf(@"  Att: %-*s %-*s %*c %-*s %@\n", 
+        NSPrintf(@"  Att: %-*s %-*s %*c %-*s %@\n",
                  WPropName, name,
                  WAttrTypeName, [attributeTypeString([property attributeType]) UTF8String],
                  (WRelTotal - WAttrTotal - 1), ' ',
@@ -163,7 +163,7 @@ NSString *attributeTypeString(NSAttributeType type) {
     }
     printf("\n");
   }
-  
+
   // Print Configurations
   NSArray *configurations = [[model configurations] sortedArrayUsingComparator:nameCmptr];
   for (NSString *configuration in configurations) {
@@ -173,7 +173,7 @@ NSString *attributeTypeString(NSAttributeType type) {
     }
     printf("\n");
   }
-  
+
   // Print Fetch Requests
   NSDictionary *fetchRequestsByName = [model fetchRequestTemplatesByName];
   NSArray *names = [[fetchRequestsByName allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];

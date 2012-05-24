@@ -19,7 +19,7 @@ NSString *tempDirectoryPath() {
   NSURL *tmpURL = [NSURL fileURLWithPath:@"/tmp/"];
   NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSItemReplacementDirectory
                                                       inDomain:NSUserDomainMask
-                                             appropriateForURL:tmpURL 
+                                             appropriateForURL:tmpURL
                                                         create:YES
                                                          error:NULL];
   return [url path];
@@ -49,7 +49,7 @@ NSString *findFileInPaths(NSArray *testPaths) {
     xcdatamodelDir = path;
   } else {
     // assume .xcdatamodel/elements file is passed
-    // create a .xcdatamodel directory inside tmpdir 
+    // create a .xcdatamodel directory inside tmpdir
     // and copy the elements file there
     xcdatamodelDir = [tmpdir stringByAppendingPathComponent:@"in.xcdatamodel"];
     NSError *error;
@@ -63,7 +63,7 @@ NSString *findFileInPaths(NSArray *testPaths) {
     }
   }
   NSString *outfile = [tmpdir stringByAppendingPathComponent:@"out.mom"];
-  
+
   // Figure out the momc path
   NSMutableArray *trypaths = [NSMutableArray arrayWithObjects:XCODE_4_3_2_MOMC_PATH, OLD_MOMC_PATH, @"./momc", nil];
   NSString *envMomcPath = [[[NSProcessInfo processInfo] environment] objectForKey:MOMC_PATH_ENV_VAR];
@@ -75,7 +75,7 @@ NSString *findFileInPaths(NSArray *testPaths) {
     NSPrintError(@"Couldn't find momc");
     return nil;
   }
-  
+
   // Run momc to compile .xcdatamodel to .mom
   NSTask *task = [NSTask launchedTaskWithLaunchPath:momc arguments:[NSArray arrayWithObjects:xcdatamodelDir, outfile, nil]];
   [task waitUntilExit];
