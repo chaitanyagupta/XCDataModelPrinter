@@ -9,17 +9,9 @@
 #import "MOMPrinter.h"
 #import <CoreData/CoreData.h>
 #import "NSData+Base64.h"
-
+#import "utils.h"
 
 @implementation MOMPrinter
-
-void NSPrintf(NSString *fmt, ...) {
-  va_list args;
-  va_start(args, fmt);
-  NSString *outStr = [[[NSString alloc] initWithFormat:fmt arguments:args] autorelease];
-  printf("%s", [outStr UTF8String]);
-  va_end(args);
-}
 
 NSString *commonFlagsStringForProperty(NSPropertyDescription *property) {
   char ochar = [property isOptional] ? 'O' : ' ';
