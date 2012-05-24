@@ -37,7 +37,7 @@ standard output.
 Installation
 ------------
 
-1. Build `XCDataModelPrinter` and copy the binary to your path
+1) Build `XCDataModelPrinter` and copy the binary to your path
 
   * Open the `XCDataModelPrinter` project in Xcode and build with release
     configuration
@@ -48,7 +48,7 @@ Installation
     Alternatively, you can build the project on the command line using
     xcodebuild.
 
-2. Test with an existing .xcdatamodel file.
+2) Test with an existing .xcdatamodel file.
 
     XCDataModelPrinter /path/to/your/project.xcdatamodeld/project 1.xcdatamodel
 
@@ -61,26 +61,24 @@ Installation
 Adding the git-diff driver
 --------------------------
 
-1. Set up `git diff` to use `XCDataModelPrinter` for xcdatamodel files
+1) Add the following line to your project's `.gitattributes` file (if
+   you want this to apply globally, you can use `~/.gitattributes`)
 
-  * Add the following line to your project's `.gitattributes` file (if
-    you want this to apply globally, you can use `~/.gitattributes`)
+    elements diff=xcdatamodel
 
-        elements diff=xcdatamodel
+  This tells git to use `xcdatamodel` as the diff driver for
+  .xcdatamodel/elements files (which contain your model's entire
+  definition). What exactly is this `xcdatamodel` driver? That is
+  defined in the next section.
 
-    This tells git to use `xcdatamodel` as the diff driver for
-    .xcdatamodel/elements files (which contain your model's entire
-    definition). What exactly is this `xcdatamodel` driver? That is
-    defined in the next section.
+2) We can set up the `xcdatamodel` driver using `git config`. Use
+   these commands to set up the driver (use the `--global` option if you
+   want to set up the driver for all your projects)
 
-  * We can set up the `xcdatamodel` driver using `git config`. Use
-    these commands to set up the driver (use the `--global` option if
-    you want to set up the driver for all your projects)
+    git config diff.xcdatamodel.xfuncname ^Entity.*$
+    git config diff.xcdatamodel.textconv XCDataModelPrinter
 
-        git config diff.xcdatamodel.xfuncname ^Entity.*$
-        git config diff.xcdatamodel.textconv XCDataModelPrinter
-
-Now, whenever you use any git command which shows a diff output
-(e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a change
-in an xcdatamodel file, you should be able to understand easily what
-changes have been made to the data model.
+   Now, whenever you use any git command which shows a diff output
+   (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a
+   change in an xcdatamodel file, you should be able to understand
+   easily what changes have been made to the data model.
