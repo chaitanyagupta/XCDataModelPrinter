@@ -9,13 +9,11 @@ Data managed object models. An example `git diff` output follows:
     index 35a20f3..939bc61 100644
     --- a/Recipes.xcdatamodel/elements
     +++ b/Recipes.xcdatamodel/elements
-    @@ -2,8 +2,8 @@ Entity: Image (NSManagedObject)
-       Att: image                     Transformable                                            O   dafQGIhBFATAxE1hyQd5z5cpRg0OLP4+M+W3+xhA6jU=
+    @@ -3,7 +3,7 @@ Entity: Image (NSManagedObject)
        Rel: recipe                    Recipe          image                            Nullify   I fVH2lmmkHE4j/FvzfJ2et3KsNxcA8p5BJp2d/xd4hH0=
 
-    -Entity: Ingredient (Ingredient)                                                               5tCLlA1r9p1UWdOTr3XJ+ZzBr6bxraWAs3Vt9zCAZek=
+     Entity: Ingredient (Ingredient)
     -  Att: amount                    String                                                   O   b9/jjR2iJtm4oldVJwj25X+/hpEL6/1CM5hLhgV48Iw=
-    +Entity: Ingredient (Ingredient)                                                               7nbTTDaWG1lAddHYHum4xP4IA/N90NYv9GLkGK+sueQ=
     +  Att: amount                    Integer16                                                O   RmH9Sk61kxsb8+GUEqlEkIuV4tDjxxhMNsHUu/tBW6I=
        Att: displayOrder              Integer16                                                    kMPJ+qU+fnBipO5Ajep+KT3rKB9zeOPrav0q4rMSt7k=
        Att: name                      String                                                       jLmWXAAxrGiROYTzEQlBrZZTlb6f2bF9575UvHrUaJA=
