@@ -10,6 +10,6 @@
 
 @interface MOMPrinter : NSObject
 
-- (void)printPath:(NSString *)path;
+- (BOOL)printPath:(NSString *)path;
 
 @end

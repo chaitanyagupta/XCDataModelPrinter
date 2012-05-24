@@ -92,9 +92,18 @@ NSString *attributeTypeString(NSAttributeType type) {
 + WPropName + 1 \
 + WFlags)
 
-- (void)printPath:(NSString *)path {
+- (BOOL)printPath:(NSString *)path {
+  NSFileManager *dfm = [NSFileManager defaultManager];
+  if (![dfm fileExistsAtPath:path]) {
+    NSPrintError(@"Cannot find file: %@", path);
+    return NO;
+  }
   NSURL *url = [NSURL fileURLWithPath:path];
   NSManagedObjectModel *model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
+  if (model == nil) {
+    NSPrintError(@"Could not load model");
+    return NO;
+  }
   
   NSComparator nameCmptr = ^(id obj1, id obj2) {
     return [[obj1 name] caseInsensitiveCompare:[obj2 name]];
@@ -174,6 +183,7 @@ NSString *attributeTypeString(NSAttributeType type) {
     NSPrintf(@"  %@\n", request);
     printf("\n");
   }
+  return YES;
 }
 
 @end
