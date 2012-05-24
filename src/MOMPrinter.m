@@ -118,10 +118,7 @@ NSString *attributeTypeString(NSAttributeType type) {
       [entityStr appendFormat:@" : %@", [superentity name]];
     }
     [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
-    NSPrintf(@"%@ %*c %@\n",
-             entityStr,
-             (WRelTotal - [entityStr length] - 1), ' ',
-             [[entity versionHash] base64EncodedString]);
+    NSPrintf(@"%@\n", entityStr);
     NSMutableArray *properties = [NSMutableArray arrayWithArray:[entity properties]];
     [properties sortUsingComparator:^(id obj1, id obj2) {
       NSNumber *n1 = orderNumberForClassOfProperty(obj1);
