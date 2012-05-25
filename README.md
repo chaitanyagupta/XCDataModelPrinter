@@ -85,21 +85,21 @@ Adding the git-diff driver
 Output Format
 -------------
 
-<flags> are:
+`<flags>` are:
   O: is optional
   T: is transient
   I: is indexed
 
-Entity: <name> [: <superentity name>] (<class name>)
-  // Attributes
-  Att: <name>               <type>                                                                [flags] <version hash>
-  // Relationships
-  Rel: <name>               <destination entity>  <inverse>                [ToMany] <delete rule> [flags] <version hash>
-  // Fetched properties
-  Fpr: <name>                                                                                     [flags] <version hash>
+    Entity: <name> [: <superentity name>] (<class name>)
+      // Attributes
+      Att: <name>               <type>                                                                [flags] <version hash>
+      // Relationships
+      Rel: <name>               <destination entity>  <inverse>                [ToMany] <delete rule> [flags] <version hash>
+      // Fetched properties
+      Fpr: <name>                                                                                     [flags] <version hash>
 
-Configuration: <name>
-  Entity: <entity name>
+    Configuration: <name>
+      Entity: <entity name>
 
-Fetch Request: <name>
-  <fetch request description>
+    Fetch Request: <name>
+      <fetch request description>
