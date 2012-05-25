@@ -3,7 +3,8 @@ Introduction
 
 This project aims to make it easy to see differences in different
 versions (e.g. `git diff`) of .xcdatamodel files used to describe Core
-Data managed object models. An example `git diff` output follows:
+Data managed object models. An example `git diff` output follows (see
+the "Output Format" section below for a more details):
 
     diff --git a/Recipes.xcdatamodel/elements b/Recipes.xcdatamodel/elements
     index 35a20f3..939bc61 100644
@@ -80,3 +81,25 @@ Adding the git-diff driver
    (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a
    change in an xcdatamodel file, you should be able to understand
    easily what changes have been made to the data model.
+
+Output Format
+-------------
+
+<flags> are:
+  O: is optional
+  T: is transient
+  I: is indexed
+
+Entity: <name> [: <superentity name>] (<class name>)
+  // Attributes
+  Att: <name>               <type>                                                                [flags] <version hash>
+  // Relationships
+  Rel: <name>               <destination entity>  <inverse>                [ToMany] <delete rule> [flags] <version hash>
+  // Fetched properties
+  Fpr: <name>                                                                                     [flags] <version hash>
+
+Configuration: <name>
+  Entity: <entity name>
+
+Fetch Request: <name>
+  <fetch request description>
