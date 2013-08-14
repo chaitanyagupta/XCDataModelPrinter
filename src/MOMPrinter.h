@@ -8,7 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, MOMPrinterPeropertiesOutputMode) {
+    MOMPrinterIncludeSuperclassProperties = 1,
+    MOMPrinterOmitSuperclassProperties = 2
+};
+
 @interface MOMPrinter : NSObject
+
+- (id)initWithMode:(MOMPrinterPeropertiesOutputMode)mode;
 
 - (BOOL)printPath:(NSString *)path;
 
