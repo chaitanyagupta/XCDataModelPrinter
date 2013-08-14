@@ -56,6 +56,18 @@ Installation
    "Couldn't find momc", you need to help `XCDataModelPrinter` find
    the the `momc` binary. You can do this by setting the environment
    variable `MOMC_PATH` to the path of the `momc` binary.
+   
+Usage
+-----
+
+Typical usage:
+
+    XCDataModelPrinter [--compact] /path/to/your/project.xcdatamodeld
+
+Following parameters are supported:
+
+  * --compact or -c : change output mode, so when printing properties of a given Entity
+      its superclasses' properties won't be included.   
 
 Adding the git-diff driver
 --------------------------
