@@ -13,7 +13,7 @@
 
 @interface MOMPrinter ()
 
-@property (nonatomic, assign) MOMPrinterPropertiesOutputMode _mode;
+@property (nonatomic, assign) MOMPrinterPropertiesOutputMode mode;
 
 @end
 
@@ -29,7 +29,7 @@
 
   self = [super init];
   if (self) {
-    self._mode = mode;
+    _mode = mode;
   }
   return self;
 }
@@ -145,7 +145,7 @@ NSString *attributeTypeString(NSAttributeType type) {
 
     NSMutableArray *properties = nil;
 
-    if (self._mode == MOMPrinterIncludeSuperclassProperties) {
+    if (self.mode == MOMPrinterIncludeSuperclassProperties) {
       properties = [NSMutableArray arrayWithArray:[entity properties]];
     } else {
       // Filter out properties that belong to superclasses.
