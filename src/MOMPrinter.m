@@ -13,7 +13,7 @@
 
 @interface MOMPrinter ()
 
-@property (nonatomic, assign) MOMPrinterPeropertiesOutputMode _mode;
+@property (nonatomic, assign) MOMPrinterPropertiesOutputMode _mode;
 
 @end
 
@@ -25,7 +25,7 @@
   return [self initWithMode:MOMPrinterIncludeSuperclassProperties];
 }
 
-- (id)initWithMode:(MOMPrinterPeropertiesOutputMode)mode {
+- (id)initWithMode:(MOMPrinterPropertiesOutputMode)mode {
 
   self = [super init];
   if (self) {
