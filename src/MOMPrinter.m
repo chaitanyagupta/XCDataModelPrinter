@@ -143,17 +143,10 @@ NSString *attributeTypeString(NSAttributeType type) {
     [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
     NSPrintf(@"%@\n", entityStr);
 
-    NSMutableArray *properties = nil;
+    NSMutableArray *properties = [NSMutableArray arrayWithArray:[entity properties]];
 
-    if (self.mode == MOMPrinterIncludeSuperclassProperties) {
-      properties = [NSMutableArray arrayWithArray:[entity properties]];
-    } else {
-      // Filter out properties that belong to superclasses.
-      NSSet *superentityProperties = [NSSet setWithArray:[superentity properties]];
-      NSMutableSet *entityProperties = [NSMutableSet setWithArray:[entity properties]];
-      [entityProperties minusSet:superentityProperties];
-
-      properties = [[entityProperties allObjects] mutableCopy];
+    if (self.mode == MOMPrinterOmitSuperclassProperties) {
+      [properties removeObjectsInArray:[superentity properties]];
     }
 
     [properties sortUsingComparator:^(id obj1, id obj2) {
