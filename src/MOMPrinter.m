@@ -192,7 +192,7 @@ NSString *attributeTypeString(NSAttributeType type) {
   }
 
   // Print Configurations
-  NSArray *configurations = [[model configurations] sortedArrayUsingComparator:nameCmptr];
+  NSArray *configurations = [[model configurations] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
   for (NSString *configuration in configurations) {
     NSPrintf(@"Configuration: %@\n", configuration);
     for (NSEntityDescription *entity in [model entitiesForConfiguration:configuration]) {
