@@ -26,7 +26,7 @@
 }
 
 - (id)initWithMode:(MOMPrinterPeropertiesOutputMode)mode {
-    
+
   self = [super init];
   if (self) {
     self._mode = mode;
@@ -142,9 +142,9 @@ NSString *attributeTypeString(NSAttributeType type) {
     }
     [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
     NSPrintf(@"%@\n", entityStr);
-      
+
     NSMutableArray *properties = nil;
-      
+
     if (self._mode == MOMPrinterIncludeSuperclassProperties) {
       properties = [NSMutableArray arrayWithArray:[entity properties]];
     } else {
@@ -152,10 +152,10 @@ NSString *attributeTypeString(NSAttributeType type) {
       NSSet *superentityProperties = [NSSet setWithArray:[superentity properties]];
       NSMutableSet *entityProperties = [NSMutableSet setWithArray:[entity properties]];
       [entityProperties minusSet:superentityProperties];
-          
+
       properties = [[entityProperties allObjects] mutableCopy];
     }
-    
+
     [properties sortUsingComparator:^(id obj1, id obj2) {
       NSNumber *n1 = orderNumberForClassOfProperty(obj1);
       NSNumber *n2 = orderNumberForClassOfProperty(obj2);
@@ -166,7 +166,7 @@ NSString *attributeTypeString(NSAttributeType type) {
         return result;
       }
     }];
-      
+
     for (id property in properties) {
       const char *name = [[property name] UTF8String];
       const char *commonFlags = [commonFlagsStringForProperty(property) UTF8String];
