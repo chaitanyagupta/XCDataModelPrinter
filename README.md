@@ -89,6 +89,10 @@ Adding the git-diff driver
     git config diff.xcdatamodel.xfuncname ^Entity.*$
     git config diff.xcdatamodel.textconv XCDataModelPrinter
 
+   If you want to use compact mode for viewing diffs, use
+
+    git config diff.xcdatamodel.textconv "XCDataModelPrinter -c"
+
    Now, whenever you use any git command which shows a diff output
    (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a
    change in an xcdatamodel file, you should be able to understand
