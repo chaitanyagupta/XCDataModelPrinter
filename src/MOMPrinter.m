@@ -11,7 +11,30 @@
 #import "NSData+Base64.h"
 #import "utils.h"
 
+@interface MOMPrinter ()
+
+@property (nonatomic, assign) MOMPrinterPropertiesOutputMode mode;
+
+@end
+
 @implementation MOMPrinter
+
+#pragma mark - init methods
+
+- (id)init {
+  return [self initWithMode:MOMPrinterIncludeSuperclassProperties];
+}
+
+- (id)initWithMode:(MOMPrinterPropertiesOutputMode)mode {
+
+  self = [super init];
+  if (self) {
+    _mode = mode;
+  }
+  return self;
+}
+
+#pragma mark -
 
 NSString *commonFlagsStringForProperty(NSPropertyDescription *property) {
   char ochar = [property isOptional] ? 'O' : ' ';
@@ -119,7 +142,13 @@ NSString *attributeTypeString(NSAttributeType type) {
     }
     [entityStr appendFormat:@" (%@)", [entity managedObjectClassName]];
     NSPrintf(@"%@\n", entityStr);
+
     NSMutableArray *properties = [NSMutableArray arrayWithArray:[entity properties]];
+
+    if (self.mode == MOMPrinterOmitSuperclassProperties) {
+      [properties removeObjectsInArray:[superentity properties]];
+    }
+
     [properties sortUsingComparator:^(id obj1, id obj2) {
       NSNumber *n1 = orderNumberForClassOfProperty(obj1);
       NSNumber *n2 = orderNumberForClassOfProperty(obj2);
@@ -130,6 +159,7 @@ NSString *attributeTypeString(NSAttributeType type) {
         return result;
       }
     }];
+
     for (id property in properties) {
       const char *name = [[property name] UTF8String];
       const char *commonFlags = [commonFlagsStringForProperty(property) UTF8String];

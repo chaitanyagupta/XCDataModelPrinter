@@ -57,6 +57,18 @@ Installation
    the the `momc` binary. You can do this by setting the environment
    variable `MOMC_PATH` to the path of the `momc` binary.
 
+Usage
+-----
+
+Typical usage:
+
+    XCDataModelPrinter [--compact] /path/to/your/project.xcdatamodeld
+
+Following parameters are supported:
+
+  * --compact or -c : change output mode, so when printing properties of a given Entity
+      its superclasses' properties won't be included.
+
 Adding the git-diff driver
 --------------------------
 
@@ -76,6 +88,10 @@ Adding the git-diff driver
 
     git config diff.xcdatamodel.xfuncname ^Entity.*$
     git config diff.xcdatamodel.textconv XCDataModelPrinter
+
+   If you want to use compact mode for viewing diffs, use
+
+    git config diff.xcdatamodel.textconv "XCDataModelPrinter -c"
 
    Now, whenever you use any git command which shows a diff output
    (e.g. `git diff`, `git log -p`, `git show`, etc.) and there's a
