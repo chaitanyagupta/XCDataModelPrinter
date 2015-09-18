@@ -6,19 +6,21 @@ versions (e.g. `git diff`) of .xcdatamodel files used to describe Core
 Data managed object models. An example `git diff` output follows (see
 the "Output Format" section below for a more details):
 
-    diff --git a/Recipes.xcdatamodel/elements b/Recipes.xcdatamodel/elements
-    index 35a20f3..939bc61 100644
-    --- a/Recipes.xcdatamodel/elements
-    +++ b/Recipes.xcdatamodel/elements
-    @@ -3,7 +3,7 @@ Entity: Image (NSManagedObject)
-       Rel: recipe                    Recipe          image                            Nullify   I fVH2lmmkHE4j/FvzfJ2et3KsNxcA8p5BJp2d/xd4hH0=
+```diff
+diff --git a/Recipes.xcdatamodel/elements b/Recipes.xcdatamodel/elements
+index 35a20f3..939bc61 100644
+--- a/Recipes.xcdatamodel/elements
++++ b/Recipes.xcdatamodel/elements
+@@ -3,7 +3,7 @@ Entity: Image (NSManagedObject)
+   Rel: recipe                    Recipe          image                            Nullify   I fVH2lmmkHE4j/FvzfJ2et3KsNxcA8p5BJp2d/xd4hH0=
 
-     Entity: Ingredient (Ingredient)
-    -  Att: amount                    String                                                   O   b9/jjR2iJtm4oldVJwj25X+/hpEL6/1CM5hLhgV48Iw=
-    +  Att: amount                    Integer16                                                O   RmH9Sk61kxsb8+GUEqlEkIuV4tDjxxhMNsHUu/tBW6I=
-       Att: displayOrder              Integer16                                                    kMPJ+qU+fnBipO5Ajep+KT3rKB9zeOPrav0q4rMSt7k=
-       Att: name                      String                                                       jLmWXAAxrGiROYTzEQlBrZZTlb6f2bF9575UvHrUaJA=
-       Rel: recipe                    Recipe          ingredients                      Nullify O I GvmjTsOh76OGkr0Lmnxdh8u6FO4E+iuEYa0mRZPuKJQ=
+ Entity: Ingredient (Ingredient)
+-  Att: amount                    String                                                   O   b9/jjR2iJtm4oldVJwj25X+/hpEL6/1CM5hLhgV48Iw=
++  Att: amount                    Integer16                                                O   RmH9Sk61kxsb8+GUEqlEkIuV4tDjxxhMNsHUu/tBW6I=
+   Att: displayOrder              Integer16                                                    kMPJ+qU+fnBipO5Ajep+KT3rKB9zeOPrav0q4rMSt7k=
+   Att: name                      String                                                       jLmWXAAxrGiROYTzEQlBrZZTlb6f2bF9575UvHrUaJA=
+   Rel: recipe                    Recipe          ingredients                      Nullify O I GvmjTsOh76OGkr0Lmnxdh8u6FO4E+iuEYa0mRZPuKJQ=
+```
 
 The project source compiles to a binary, `XCDataModelPrinter`, which
 prints a textual representation of a .xcdatamodel file. This binary
